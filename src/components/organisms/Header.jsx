@@ -12,7 +12,8 @@ const Header = () => {
   
   // Simulate authentication state
 const { user, isAuthenticated } = useSelector((state) => state.user);
-  const { logout } = useContext(AuthContext);
+const authContext = useContext(AuthContext);
+  const logout = authContext?.logout;
 
   const isActivePath = (path) => location.pathname === path;
 
