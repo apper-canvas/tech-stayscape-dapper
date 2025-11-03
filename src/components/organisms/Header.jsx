@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { AnimatePresence, motion } from "framer-motion";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
-import { AuthContext } from "@/contexts/AuthContext";
+import { AuthContext } from "@/App";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
