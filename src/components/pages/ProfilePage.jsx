@@ -10,14 +10,14 @@ import ApperIcon from "@/components/ApperIcon";
 import userService from "@/services/api/userService";
 
 const ProfilePage = () => {
-  const [user, setUser] = useState(null);
+const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [saving, setSaving] = useState(false);
   const [editData, setEditData] = useState({});
 
-  const loadUser = async () => {
+const loadUser = async () => {
     try {
       setError(null);
       setLoading(true);
@@ -35,14 +35,14 @@ const ProfilePage = () => {
     loadUser();
   }, []);
 
-  const handleInputChange = (field, value) => {
+const handleInputChange = (field, value) => {
     setEditData(prev => ({
       ...prev,
       [field]: value
     }));
   };
 
-  const handlePreferenceChange = (field, value) => {
+const handlePreferenceChange = (field, value) => {
     setEditData(prev => ({
       ...prev,
       preferences: {
@@ -52,7 +52,7 @@ const ProfilePage = () => {
     }));
   };
 
-  const handleSave = async () => {
+const handleSave = async () => {
     try {
       setSaving(true);
       const updatedUser = await userService.updateProfile(user.Id, editData);
@@ -88,7 +88,7 @@ const ProfilePage = () => {
   if (error) return <Error message={error} onRetry={loadUser} />;
   if (!user) return <Error message="User not found" />;
 
-  const loyaltyInfo = getLoyaltyStatusInfo(user.loyaltyStatus);
+const loyaltyInfo = getLoyaltyStatusInfo(user.loyaltyStatus);
 
   return (
     <div className="min-h-screen bg-background py-8">
@@ -119,7 +119,7 @@ const ProfilePage = () => {
               >
                 <div className="relative mb-6">
                   <img
-                    src={user.avatar}
+src={user.avatar}
                     alt={user.name}
                     className="w-24 h-24 rounded-full object-cover mx-auto border-4 border-white shadow-lg"
                   />
@@ -129,25 +129,25 @@ const ProfilePage = () => {
                 </div>
 
                 <h2 className="text-xl font-display font-semibold text-gray-900 mb-2">
-                  {user.name}
+{user.name}
                 </h2>
                 <p className="text-gray-600 mb-4">{user.email}</p>
 
                 <div className="space-y-3 mb-6">
-                  <Badge variant="default" className={loyaltyInfo.color}>
+<Badge variant="default" className={loyaltyInfo.color}>
                     <ApperIcon name={loyaltyInfo.icon} className="w-3 h-3 mr-1" />
                     {user.loyaltyStatus} Member
                   </Badge>
                   
                   <div className="text-sm text-gray-600">
-                    Member since {new Date(user.memberSince).getFullYear()}
+Member since {new Date(user.memberSince).getFullYear()}
                   </div>
                 </div>
 
                 {/* Stats */}
                 <div className="grid grid-cols-2 gap-4 pt-6 border-t border-gray-200">
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-primary-500">{user.totalBookings}</div>
+<div className="text-2xl font-bold text-primary-500">{user.totalBookings}</div>
                     <div className="text-sm text-gray-600">Total Bookings</div>
                   </div>
                   <div className="text-center">
@@ -195,26 +195,26 @@ const ProfilePage = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <Input
                     label="First Name"
-                    value={editData.firstName || ""}
+value={editData.firstName || ""}
                     onChange={(e) => handleInputChange("firstName", e.target.value)}
                     disabled={!isEditing}
                   />
                   <Input
                     label="Last Name"
-                    value={editData.lastName || ""}
+value={editData.lastName || ""}
                     onChange={(e) => handleInputChange("lastName", e.target.value)}
                     disabled={!isEditing}
                   />
                   <Input
                     label="Email Address"
                     type="email"
-                    value={editData.email || ""}
+value={editData.email || ""}
                     onChange={(e) => handleInputChange("email", e.target.value)}
                     disabled={!isEditing}
                   />
                   <Input
                     label="Phone Number"
-                    value={editData.phone || ""}
+value={editData.phone || ""}
                     onChange={(e) => handleInputChange("phone", e.target.value)}
                     disabled={!isEditing}
                   />
@@ -236,7 +236,7 @@ const ProfilePage = () => {
                   <div>
                     <label className="label">Preferred Room Type</label>
                     <select
-                      value={editData.preferences?.roomType || ""}
+value={editData.preferences?.roomType || ""}
                       onChange={(e) => handlePreferenceChange("roomType", e.target.value)}
                       disabled={!isEditing}
                       className="input"
@@ -251,7 +251,7 @@ const ProfilePage = () => {
                   <div>
                     <label className="label">Bed Preference</label>
                     <select
-                      value={editData.preferences?.bedType || ""}
+value={editData.preferences?.bedType || ""}
                       onChange={(e) => handlePreferenceChange("bedType", e.target.value)}
                       disabled={!isEditing}
                       className="input"
@@ -265,7 +265,7 @@ const ProfilePage = () => {
                   <div>
                     <label className="label">Smoking Preference</label>
                     <select
-                      value={editData.preferences?.smokingPreference || ""}
+value={editData.preferences?.smokingPreference || ""}
                       onChange={(e) => handlePreferenceChange("smokingPreference", e.target.value)}
                       disabled={!isEditing}
                       className="input"
@@ -278,7 +278,7 @@ const ProfilePage = () => {
                   <div>
                     <label className="label">Floor Preference</label>
                     <select
-                      value={editData.preferences?.floorPreference || ""}
+value={editData.preferences?.floorPreference || ""}
                       onChange={(e) => handlePreferenceChange("floorPreference", e.target.value)}
                       disabled={!isEditing}
                       className="input"
@@ -294,7 +294,7 @@ const ProfilePage = () => {
                   <label className="flex items-center">
                     <input
                       type="checkbox"
-                      checked={editData.preferences?.newsletter || false}
+checked={editData.preferences?.newsletter || false}
                       onChange={(e) => handlePreferenceChange("newsletter", e.target.checked)}
                       disabled={!isEditing}
                       className="mr-3 rounded"
